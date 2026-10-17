@@ -1,0 +1,930 @@
+/* ========================================
+   1. DESIGN TOKENS
+   Variabel warna, ukuran, dan bayangan
+======================================== */
+
+:root {
+    color-scheme: light;
+
+    --bg: #f6f7fb;
+    --surface: #ffffff;
+    --surface-soft: #f1f3f8;
+    --text: #202637;
+    --text-muted: #747d90;
+    --border: #e7eaf1;
+
+    --primary: #5965d9;
+    --primary-hover: #4652c4;
+    --primary-soft: #eef0ff;
+
+    --success: #21865b;
+    --danger: #c74747;
+
+    --shadow: 0 8px 28px rgba(32, 38, 55, 0.045);
+
+    --radius-sm: 10px;
+    --radius-md: 16px;
+    --radius-lg: 22px;
+
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 24px;
+    --space-6: 32px;
+    --space-7: 48px;
+
+    --content-width: 1120px;
+}
+
+/* ========================================
+   2. DARK THEME
+   Aktif saat elemen HTML memiliki
+   data-theme="dark"
+======================================== */
+
+:root[data-theme="dark"] {
+    color-scheme: dark;
+
+    --bg: #151821;
+    --surface: #202431;
+    --surface-soft: #292e3e;
+    --text: #edf0f7;
+    --text-muted: #a0a9bd;
+    --border: #353b4d;
+
+    --primary: #929bff;
+    --primary-hover: #adb4ff;
+    --primary-soft: #303653;
+
+    --success: #75d7a8;
+    --danger: #ff9999;
+
+    --shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+}
+
+/* ========================================
+   3. RESET DAN PENGATURAN DASAR
+======================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-width: 320px;
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 15px;
+    line-height: 1.6;
+
+    transition:
+        background-color 0.2s ease,
+        color 0.2s ease;
+}
+
+button,
+input,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
+
+button:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+}
+
+input,
+select {
+    width: 100%;
+    min-width: 0;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 11px 13px;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+input::placeholder {
+    color: var(--text-muted);
+    opacity: 0.8;
+}
+
+input:focus,
+select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-soft);
+    outline: none;
+}
+
+label {
+    display: block;
+    margin-bottom: var(--space-2);
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+h1,
+h2,
+p {
+    margin-top: 0;
+}
+
+h1,
+h2 {
+    color: var(--text);
+    letter-spacing: -0.035em;
+}
+
+h1 {
+    margin-bottom: var(--space-2);
+    font-size: clamp(30px, 4vw, 44px);
+    line-height: 1.2;
+}
+
+h2 {
+    margin-bottom: 0;
+    font-size: 21px;
+    line-height: 1.35;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* ========================================
+   4. CONTAINER DAN HEADER
+======================================== */
+
+.app-container {
+    width: min(var(--content-width), calc(100% - 48px));
+    margin-inline: auto;
+}
+
+.topbar {
+    min-height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    border-bottom: 1px solid var(--border);
+}
+
+.brand {
+    color: var(--text);
+    font-size: 21px;
+    font-weight: 800;
+    letter-spacing: -0.06em;
+}
+
+.brand span {
+    color: var(--primary);
+}
+
+.brand:hover {
+    text-decoration: none;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 8px 14px;
+
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    font-size: 13px;
+    font-weight: 600;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.icon-button:hover {
+    background: var(--surface-soft);
+}
+
+/* ========================================
+   5. SALAM, TANGGAL, DAN JAM
+======================================== */
+
+.greeting-section {
+    padding-block: var(--space-7);
+}
+
+.eyebrow {
+    margin-bottom: var(--space-2);
+    color: var(--primary);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+}
+
+.greeting-section .eyebrow {
+    color: var(--text-muted);
+    letter-spacing: 0.035em;
+}
+
+.section-description {
+    margin-bottom: 0;
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.clock {
+    margin-top: var(--space-5);
+    color: var(--text);
+    font-size: clamp(38px, 7vw, 64px);
+    font-weight: 750;
+    line-height: 1.15;
+    letter-spacing: -0.06em;
+    font-variant-numeric: tabular-nums;
+}
+
+.name-settings {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-top: var(--space-5);
+}
+
+.name-settings label {
+    margin: 0;
+}
+
+.name-settings input {
+    width: min(220px, 100%);
+}
+
+.name-settings button {
+    flex-shrink: 0;
+}
+
+/* ========================================
+   6. GRID DAN PANEL
+======================================== */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-5);
+    align-items: start;
+}
+
+.panel {
+    min-width: 0;
+    padding: var(--space-5);
+
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.panel-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+}
+
+.panel-heading .eyebrow {
+    margin-bottom: 6px;
+}
+
+.status-label,
+.task-count {
+    flex-shrink: 0;
+    padding: 5px 10px;
+
+    color: var(--primary);
+    background: var(--primary-soft);
+    border-radius: 999px;
+
+    font-size: 11px;
+    font-weight: 700;
+}
+
+/* ========================================
+   7. TIMER FOKUS
+======================================== */
+
+.timer-display {
+    margin-block: var(--space-6);
+    text-align: center;
+
+    color: var(--text);
+    font-size: clamp(52px, 7vw, 76px);
+    font-weight: 750;
+    line-height: 1;
+    letter-spacing: -0.065em;
+    font-variant-numeric: tabular-nums;
+}
+
+.focus-panel>.section-description {
+    text-align: center;
+}
+
+.timer-settings {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.timer-settings label {
+    flex-basis: 100%;
+    margin-bottom: 0;
+}
+
+.timer-settings input {
+    flex: 1 1 80px;
+    width: 80px;
+    min-height: 44px;
+}
+
+.timer-settings button {
+    flex-shrink: 0;
+    min-height: 44px;
+    padding: 10px 15px;
+
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    font-size: 13px;
+    font-weight: 650;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease;
+}
+
+.timer-settings button:hover {
+    background: var(--surface-soft);
+    border-color: var(--primary);
+}
+
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+button[type="submit"],
+#save-name,
+#save-duration,
+.button-group button {
+    min-height: 42px;
+    padding: 10px 15px;
+
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    font-size: 13px;
+    font-weight: 650;
+
+    transition:
+        background-color 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.15s ease;
+}
+
+button[type="submit"]:hover,
+#save-name:hover,
+#save-duration:hover,
+.button-group button:hover {
+    background: var(--surface-soft);
+}
+
+#start-timer,
+#add-task,
+#add-link {
+    color: #ffffff;
+    background: #5965d9;
+    border-color: #5965d9;
+}
+
+:root[data-theme="dark"] #start-timer,
+:root[data-theme="dark"] #add-task,
+:root[data-theme="dark"] #add-link {
+    color: #151821;
+    background: #a5adff;
+    border-color: #a5adff;
+}
+
+#start-timer:hover,
+#add-task:hover,
+#add-link:hover {
+    filter: brightness(0.96);
+}
+
+/* ========================================
+   8. DAFTAR TUGAS
+======================================== */
+
+#task-form {
+    margin-bottom: var(--space-3);
+}
+
+.input-group {
+    display: flex;
+    align-items: stretch;
+    gap: var(--space-2);
+}
+
+.input-group input {
+    flex: 1;
+}
+
+.input-group button {
+    flex-shrink: 0;
+}
+
+.feedback {
+    min-height: 0;
+    margin-bottom: var(--space-3);
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+.feedback:empty {
+    display: none;
+}
+
+.task-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.task-toolbar label {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+.task-toolbar select {
+    width: auto;
+    max-width: 65%;
+    padding: 8px 10px;
+    font-size: 12px;
+}
+
+.task-list {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+/* Task item */
+.task-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    min-width: 0;
+    padding: 13px;
+
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+
+    transition: border-color 0.2s ease;
+}
+
+.task-item:hover {
+    border-color: var(--primary);
+}
+
+.task-item input[type="checkbox"] {
+    flex: 0 0 auto;
+    width: 17px;
+    height: 17px;
+    margin-top: 3px;
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.task-content {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.task-text {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.5;
+}
+
+.task-item.is-completed .task-text {
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+.task-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    flex-shrink: 0;
+}
+
+.task-actions button,
+.quick-link-delete {
+    padding: 5px 8px;
+    color: var(--text-muted);
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    font-size: 11px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.task-actions button:hover,
+.quick-link-delete:hover {
+    color: var(--danger);
+    border-color: var(--danger);
+}
+
+.empty-state {
+    margin-block: var(--space-5);
+    color: var(--text-muted);
+    text-align: center;
+    font-size: 13px;
+}
+
+.empty-state:empty {
+    display: none;
+}
+
+/* ========================================
+   9. TAUTAN CEPAT
+======================================== */
+
+#link-form {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.form-field {
+    min-width: 0;
+}
+
+#add-link {
+    justify-self: start;
+}
+
+.quick-links {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+}
+
+.quick-link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-width: 0;
+    padding: 13px;
+
+    color: var(--text);
+    background: var(--surface-soft);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+
+    transition:
+        border-color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.quick-link:hover {
+    border-color: var(--primary);
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(89, 101, 217, 0.15);
+}
+
+.quick-link-name {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.quick-link-name:hover {
+    text-decoration: underline;
+}
+
+.quick-link-delete {
+    flex-shrink: 0;
+    margin-left: auto;
+}
+
+/* ========================================
+   10. FOOTER
+======================================== */
+
+.footer {
+    padding-block: var(--space-6);
+    margin-top: var(--space-5);
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.footer p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 12px;
+}
+
+/* ========================================
+   11. RESPONSIVE: TABLET
+======================================== */
+
+@media (max-width: 800px) {
+    .app-container {
+        width: calc(100% - 32px);
+    }
+
+    .dashboard-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: var(--space-4);
+    }
+
+    .greeting-section {
+        padding-block: var(--space-6);
+    }
+
+    .panel {
+        padding: 22px;
+    }
+}
+
+/* ========================================
+   12. RESPONSIVE: PONSEL
+======================================== */
+
+@media (max-width: 480px) {
+    .app-container {
+        width: calc(100% - 24px);
+    }
+
+    .topbar {
+        min-height: 68px;
+    }
+
+    .brand {
+        font-size: 19px;
+    }
+
+    .greeting-section {
+        padding-block: var(--space-5);
+    }
+
+    h1 {
+        font-size: 31px;
+    }
+
+    h2 {
+        font-size: 19px;
+    }
+
+    .clock {
+        font-size: 43px;
+    }
+
+    .panel {
+        padding: var(--space-4);
+        border-radius: var(--radius-md);
+    }
+
+    .panel-heading {
+        gap: var(--space-2);
+    }
+
+    .timer-display {
+        font-size: 58px;
+    }
+
+    .button-group {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    #start-timer {
+        grid-column: 1 / -1;
+    }
+
+    .name-settings {
+        align-items: stretch;
+    }
+
+    .name-settings label {
+        flex-basis: 100%;
+    }
+
+    .name-settings input {
+        flex: 1 1 150px;
+        width: auto;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    .input-group button {
+        width: 100%;
+    }
+
+    .task-toolbar {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .task-toolbar select {
+        width: 100%;
+        max-width: none;
+    }
+
+    .quick-links {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .footer {
+        margin-top: var(--space-4);
+    }
+}
+
+/* ========================================
+   13. AKSESIBILITAS: GERAKAN MINIMAL
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+/* ========================================
+   14. PERBAIKAN TAMBAHAN
+======================================== */
+
+/* Tombol theme toggle dengan ikon */
+#theme-toggle {
+    gap: var(--space-2);
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+/* Button group timer — layout horizontal yang rapi */
+.button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.button-group button {
+    flex: 1;
+    min-height: 44px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition:
+        background-color 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.1s ease;
+}
+
+.button-group button:hover {
+    background: var(--surface-soft);
+    border-color: var(--primary);
+    transform: translateY(-1px);
+}
+
+.button-group button:active {
+    transform: translateY(0);
+}
+
+/* Panel links — form layout yang lebih rapi */
+.links-panel #link-form {
+    display: grid;
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.links-panel #add-link {
+    justify-self: start;
+    min-height: 42px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Feedback text */
+.feedback {
+    min-height: 0;
+    margin: 4px 0 0;
+    color: var(--success);
+    font-size: 12px;
+}
+
+.feedback:empty {
+    display: none;
+}
+
+/* Panel task — pastikan empty state tampil dengan benar */
+#empty-tasks,
+#empty-links {
+    text-align: center;
+    padding: var(--space-5) 0;
+}
+
+/* Responsive: ponsel — button group full width */
+@media (max-width: 480px) {
+    .button-group {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #start-timer {
+        grid-column: 1 / -1;
+    }
+}

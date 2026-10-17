@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Dashboard sederhana untuk mengatur fokus dan produktivitas.">
+    <title>Productivity Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/script.js" defer></script>
+</head>
+
+<body>
+    <div class="app-container">
+
+        <!-- Header -->
+        <header class="topbar">
+            <a href="#" class="brand">Focus<span>space.</span></a>
+
+            <div class="header-actions">
+                <button id="theme-toggle" class="icon-button" type="button" aria-label="Ganti tema">
+                    🌙 Mode Gelap
+                </button>
+            </div>
+        </header>
+
+        <main>
+            <!-- Salam dan waktu -->
+            <section class="greeting-section">
+                <p class="eyebrow" id="current-date">Memuat tanggal..</p>
+
+                <h1 id="greeting">Selamat datang!</h1>
+
+                <p class="section-description">
+                    Ayo kita fokus hari ini dan selesaikan tugasmu.
+                </p>
+
+                <div class="clock" id="current-time">00:00:00</div>
+
+                <div class="name-settings">
+                    <label for="user-name">Nama Anda</label>
+                    <input id="user-name" type="text" placeholder="Masukkan nama anda" maxlength="40">
+                    <button id="save-name" type="button">Simpan nama</button>
+                </div>
+            </section>
+
+            <!-- Area utama dashboard -->
+            <div class="dashboard-grid">
+
+                <!-- Timer fokus -->
+                <section class="panel focus-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">POMODORO TIMER</p>
+                            <h2>Get ready to focus</h2>
+                        </div>
+                        <span class="status-label" id="timer-status">Siap fokus</span>
+                    </div>
+
+                    <div class="timer-display" id="timer-display">25:00</div>
+
+                    <p class="section-description" id="timer-message">
+                        Satu langkah menuju kemenangan.
+                    </p>
+
+                    <div class="timer-settings">
+                        <label for="focus-duration">Durasi fokus (menit)</label>
+                        <input id="focus-duration" type="number" min="1" max="180" value="25">
+                        <button id="save-duration" type="button">Atur durasi</button>
+                    </div>
+
+                    <div class="timer-settings">
+                        <label for="break-duration">Durasi istirahat (menit)</label>
+                        <input id="break-duration" type="number" min="5" max="60" value="5">
+                        <button id="save-break-duration" type="button">Atur istirahat</button>
+                    </div>
+
+                    <div class="button-group">
+                        <button id="start-timer" type="button">Mulai</button>
+                        <button id="pause-timer" type="button">Pause</button>
+                        <button id="reset-timer" type="button">Reset</button>
+                    </div>
+                </section>
+
+                <!-- Daftar tugas -->
+                <section class="panel tasks-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">DAILY PLANNER</p>
+                            <h2>Daftar tugas</h2>
+                        </div>
+                        <span class="task-count" id="task-count">0/0 selesai</span>
+                    </div>
+
+                    <form id="task-form">
+                        <label for="task-input">Tugas baru</label>
+                        <div class="input-group">
+                            <input id="task-input" type="text" placeholder="Apa yang ingin anda kerjakan?"
+                                maxlength="200" required>
+                            <button type="submit" id="add-task">Tambah</button>
+                        </div>
+                    </form>
+
+                    <p id="task-feedback" class="feedback" aria-live="polite"></p>
+
+                    <div class="task-toolbar">
+                        <label for="task-sort">Urutkan tugas</label>
+                        <select id="task-sort">
+                            <option value="active-first">Belum selesai dahulu</option>
+                            <option value="complete-first">Selesai dahulu</option>
+                            <option value="newest">Terbaru dahulu</option>
+                            <option value="oldest">Terlama dahulu</option>
+                        </select>
+                    </div>
+
+                    <ul id="task-list" class="task-list"></ul>
+
+                    <p id="empty-tasks" class="empty-state">
+                        Belum ada tugas. Tambahkan tugas pertama Anda.
+                    </p>
+                </section>
+
+                <!-- Tautan cepat -->
+                <section class="panel links-panel">
+                    <div class="panel-heading">
+                        <div>
+                            <p class="eyebrow">QUICK ACCESS</p>
+                            <h2>Tautan cepat</h2>
+                        </div>
+                    </div>
+
+                    <form id="link-form">
+                        <div class="form-field">
+                            <label for="link-name">Nama situs</label>
+                            <input id="link-name" type="text" placeholder="contoh: YouTube" maxlength="40" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="link-url">URL</label>
+                            <input id="link-url" type="url" placeholder="https://example.com" required>
+                        </div>
+
+                        <button type="submit" id="add-link">Tambah tautan</button>
+
+                        <p id="link-feedback" class="feedback" aria-live="polite"></p>
+                    </form>
+
+                    <div id="quick-links" class="quick-links"></div>
+
+                    <p id="empty-links" class="empty-state">
+                        Tambahkan situs yang sering Anda gunakan.
+                    </p>
+                </section>
+
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>Focusspace. — Satu hal pada satu waktu.</p>
+        </footer>
+
+    </div>
+</body>
+
+</html>
