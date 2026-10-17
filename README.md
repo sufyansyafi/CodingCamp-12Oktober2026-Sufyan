@@ -20,7 +20,6 @@ A clean, personal browser dashboard built with pure HTML, CSS, and Vanilla JavaS
 | **Custom name in greeting** | Edit icon next to your name; saved to localStorage     |
 | **Change Pomodoro time**    | Duration input below the timer; 1–120 minutes          |
 | **Prevent duplicate tasks** | Warning shown if the same task text already exists     |
-| **Sort tasks**              | Dropdown: Default · A→Z · Z→A · Done last · Done first |
 
 ## File Structure
 
